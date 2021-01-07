@@ -10,11 +10,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    168deg,
-    rgba(238, 238, 238, 1) 0%,
-    rgba(19, 209, 233, 1) 100%
-  );
+  background: #fff;
 `;
 
 const Title = styled.h1`
