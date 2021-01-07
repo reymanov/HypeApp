@@ -69,7 +69,7 @@ export default function Task() {
     setProperties((properties) => [
       ...properties,
       {
-        id: value,
+        id: Date.now(),
         title: value,
         isExpandable: false,
       },

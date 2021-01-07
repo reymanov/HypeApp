@@ -9,6 +9,7 @@ const PopupContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 `;
 
 const PopupForm = styled.form`
@@ -25,7 +26,7 @@ const PopupForm = styled.form`
 const Input = styled.input`
   width: 80%;
   height: 3em;
-  padding: 0em 0.5em;
+  padding: 0em 1em;
   background: #fff;
   border: 1px darkgrey solid;
   border-radius: 0.6em;
@@ -88,6 +89,8 @@ export default function Popup(props) {
           onChange={handleOnChange}
           value={value}
           maxLength="26"
+          minLength="3"
+          required
           placeholder="Add new property"
         />
         <div>

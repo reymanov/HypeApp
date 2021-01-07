@@ -3,16 +3,18 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 6em;
+  min-height: 10px;
+  margin: 6em 1em 0 -2em;
   display: flex;
   flex-direction: column;
+  color: #4b597b;
 `;
 
 const Box = styled.div`
   position: relative;
   width: 100%;
   min-height: 10px;
-  padding: 0.8em 1em;
+  padding: 1rem 1.6rem;
   margin-bottom: 1.4em;
   border-radius: 8px;
   text-align: left;
@@ -27,8 +29,38 @@ const Box = styled.div`
     left: 0;
     top: 0;
     height: 100%;
+    width: 11px;
+    background: linear-gradient(
+      180deg,
+      rgba(169, 116, 247, 1) 0%,
+      rgba(119, 116, 247, 1) 100%
+    );
+    border-radius: 8px 0 0 8px;
+  }
+`;
+
+const RemoveButton = styled.button`
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(180deg, #f76b90 0%, #f34f6b 100%);
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before {
+    content: "";
+    position: absolute;
     width: 10px;
-    background: #7165f0;
+    height: 3px;
+    background: #fff;
+    border-radius: 1px;
   }
 `;
 
@@ -36,7 +68,12 @@ export default function Properties(props) {
   return (
     <Container>
       {props.properties.map((element) => {
-        return <Box>{element.title}</Box>;
+        return (
+          <Box>
+            {element.title}
+            <RemoveButton />
+          </Box>
+        );
       })}
     </Container>
   );
