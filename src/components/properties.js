@@ -41,18 +41,20 @@ const Box = styled.div`
 
 const RemoveButton = styled.button`
   position: relative;
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   border: none;
   font-size: 1.5em;
   font-weight: bold;
   color: #fff;
-  background: linear-gradient(180deg, #f76b90 0%, #f34f6b 100%);
+  background: linear-gradient(180deg, #f76b90 0%, #f6668a 100%);
+  box-shadow: 0px 0px 10px -2px #f6668a;
   float: right;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: box-shadow 0.2s ease;
 
   &:before {
     content: "";
@@ -61,6 +63,11 @@ const RemoveButton = styled.button`
     height: 3px;
     background: #fff;
     border-radius: 1px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px #f6668a;
   }
 `;
 
@@ -71,7 +78,9 @@ export default function Properties(props) {
         return (
           <Box>
             {element.title}
-            <RemoveButton />
+            <RemoveButton
+              onClick={() => props.handleDeleteProperty(element.id)}
+            />
           </Box>
         );
       })}

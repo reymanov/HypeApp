@@ -5,16 +5,16 @@ import PopupContainer from "./popup";
 import Properties from "./properties";
 
 const AppContainer = styled.div`
-  width: 640px;
+  width: 600px;
   min-height: 720px;
-  padding: 4em;
+  padding: 4em 2.5em;
   margin: 2em auto;
   border-radius: 8px;
   background: #fff;
   text-align: center;
   display: flex;
   box-shadow: 0px 0px 25px -14px #7165f0;
-  zoom: 1.1;
+  zoom: 1;
 `;
 
 const People = styled.div`
@@ -77,6 +77,14 @@ export default function Task() {
     handleClosePopup();
   }
 
+  function handleDeleteProperty(id) {
+    setProperties(
+      properties.filter((element) => {
+        return element.id !== id;
+      })
+    );
+  }
+
   return (
     <>
       {togglePopup === true && (
@@ -90,7 +98,10 @@ export default function Task() {
           <People>People</People>
           <MainAddButton onClick={handleOpenPopup}>+</MainAddButton>
         </div>
-        <Properties properties={properties} />
+        <Properties
+          properties={properties}
+          handleDeleteProperty={handleDeleteProperty}
+        />
       </AppContainer>
     </>
   );

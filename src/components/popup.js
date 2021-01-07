@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
+
+import useOutsideClick from "../scripts/outsiteClick";
 
 const PopupContainer = styled.div`
   width: 100vw;
@@ -73,6 +75,7 @@ const ConfirmButton = styled.button`
 
 export default function Popup(props) {
   const [value, setValue] = useState("");
+  const ref = useRef();
 
   function handleSubmit(event) {
     props.addNewProperty(event, value);
@@ -82,9 +85,14 @@ export default function Popup(props) {
   function handleOnChange(event) {
     setValue(event.target.value);
   }
+
+  useOutsideClick(ref, () => {
+    props.handleClosePopup();
+  });
+
   return (
     <PopupContainer>
-      <PopupForm onSubmit={(value) => handleSubmit(value)}>
+      <PopupForm onSubmit={(value) => handleSubmit(value)} ref={ref}>
         <Input
           onChange={handleOnChange}
           value={value}
