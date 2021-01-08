@@ -9,12 +9,12 @@ const AppContainer = styled.div`
   min-height: 720px;
   padding: 4em 2.5em;
   margin: 2em auto;
+  display: flex;
   border-radius: 8px;
   background: #fff;
   text-align: center;
-  display: flex;
+  letter-spacing: 0.5px;
   box-shadow: 0px 0px 25px -14px #7165f0;
-  zoom: 1;
 `;
 
 const People = styled.div`
@@ -24,11 +24,11 @@ const People = styled.div`
     rgba(169, 116, 247, 1) 0%,
     rgba(119, 116, 247, 1) 100%
   );
-  border-radius: 0.6em;
+  border-radius: 6px;
   padding: 0.8em 1em;
   color: #fff;
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 900;
 `;
 
 const MainAddButton = styled.button`
@@ -71,7 +71,8 @@ export default function Task() {
       {
         id: Date.now(),
         title: value,
-        isExpandable: false,
+        isExpandable: value === "Ethnicity" ? true : false,
+        ethnicities: value === "Ethnicity" ? [] : null,
       },
     ]);
     handleClosePopup();

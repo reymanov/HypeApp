@@ -19,7 +19,7 @@ const Box = styled.div`
   border-radius: 8px;
   text-align: left;
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 900;
   box-shadow: 0px 0px 25px -14px #7165f0;
 
   &:before {
@@ -71,6 +71,27 @@ const RemoveButton = styled.button`
   }
 `;
 
+const AddButton = styled.button`
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  margin: 60px 0 0 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(43, 231, 163, 1) 0%,
+    rgba(48, 232, 222, 1) 100%
+  );
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0px 0px 15px -2px #5fedbc;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export default function Properties(props) {
   return (
     <Container>
@@ -81,6 +102,16 @@ export default function Properties(props) {
             <RemoveButton
               onClick={() => props.handleDeleteProperty(element.id)}
             />
+            {element.isExpandable ? (
+              <>
+                <div>
+                  {element.ethnicities.map(() => {
+                    return <h1>{element.value}</h1>;
+                  })}
+                </div>
+                <AddButton>+</AddButton>
+              </>
+            ) : null}
           </Box>
         );
       })}
