@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+
+import EthnicityBox from "./ethnicityBox";
 
 const Container = styled.div`
   width: 100%;
@@ -47,6 +49,7 @@ const RemoveButton = styled.button`
   border: none;
   font-size: 1.5em;
   font-weight: bold;
+  margin-right: 0.4em;
   color: #fff;
   background: linear-gradient(180deg, #f76b90 0%, #f6668a 100%);
   box-shadow: 0px 0px 10px -2px #f6668a;
@@ -71,62 +74,16 @@ const RemoveButton = styled.button`
   }
 `;
 
-const RemoveButtonDiff = styled(RemoveButton)`
-  margin-top: 0.2em;
-`;
-
-const AddButton = styled.button`
-  width: 28px;
-  height: 28px;
-  border: none;
-  border-radius: 50%;
-  margin: 60px 0 0 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(43, 231, 163, 1) 0%,
-    rgba(48, 232, 222, 1) 100%
-  );
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #fff;
-  box-shadow: 0px 0px 15px -2px #5fedbc;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const TitleBorder = styled.div`
-  position: absolute;
-  width: 70%;
-  padding: 0.3em 0.8em;
-  border: 1px lightgrey solid;
-  border-radius: 5px;
-`;
-
 export default function Properties(props) {
-  function openEthnicitiesPopup() {
-    props.handleOpenPopup();
-    localStorage["addEthnicity"] = JSON.stringify(true);
-  }
-
   return (
     <Container>
       {props.properties.map((element) => {
         return element.isExpandable ? (
-          <Box>
-            <TitleBorder>{element.title}</TitleBorder>
-            <RemoveButtonDiff
-              onClick={() => props.handleDeleteProperty(element.id)}
-            />
-
-            <div>
-              {element.ethnicities.map((element) => {
-                return <p>{element.title}</p>;
-              })}
-            </div>
-            <AddButton onClick={openEthnicitiesPopup}>+</AddButton>
-          </Box>
+          <EthnicityBox
+            handleDeleteProperty={(id) => props.handleDeleteProperty(id)}
+            handleOpenPopup={() => props.handleOpenPopup()}
+            element={element}
+          />
         ) : (
           <Box>
             {element.title}
