@@ -78,7 +78,12 @@ export default function Popup(props) {
   const ref = useRef();
 
   function handleSubmit(event) {
-    props.addNewProperty(event, value);
+    if (localStorage["addEthnicity"]) {
+      props.addNewEthnicity(event, value);
+      localStorage.removeItem("addEthnicity");
+    } else {
+      props.addNewProperty(event, value);
+    }
     setValue("");
   }
 

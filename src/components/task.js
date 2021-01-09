@@ -34,7 +34,7 @@ const People = styled.div`
 const MainAddButton = styled.button`
   width: 70px;
   height: 70px;
-  margin-top: 300px;
+  margin-top: 350px;
   border: 10px #fff solid;
   border-radius: 50%;
   background: linear-gradient(
@@ -62,6 +62,7 @@ export default function Task() {
 
   function handleClosePopup() {
     setTogglePopup(false);
+    localStorage.removeItem("addEthnicity");
   }
 
   function addNewProperty(event, value) {
@@ -86,22 +87,39 @@ export default function Task() {
     );
   }
 
+  function addNewEthnicity(event, value) {
+    event.preventDefault();
+    properties.forEach((element) => {
+      if (element.isExpandable) {
+        element.ethnicities.push({
+          id: `e_${Date.now()}`,
+          title: value,
+        });
+      }
+    });
+    handleClosePopup();
+  }
+
   return (
     <>
       {togglePopup === true && (
         <PopupContainer
           handleClosePopup={handleClosePopup}
           addNewProperty={addNewProperty}
+          addNewEthnicity={addNewEthnicity}
         />
       )}
       <AppContainer>
         <div>
-          <People>People</People>
-          <MainAddButton onClick={handleOpenPopup}>+</MainAddButton>
+          <People id="one">People</People>
+          <MainAddButton id="two" onClick={handleOpenPopup}>
+            +
+          </MainAddButton>
         </div>
         <Properties
           properties={properties}
           handleDeleteProperty={handleDeleteProperty}
+          handleOpenPopup={handleOpenPopup}
         />
       </AppContainer>
     </>

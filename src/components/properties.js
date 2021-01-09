@@ -71,6 +71,10 @@ const RemoveButton = styled.button`
   }
 `;
 
+const RemoveButtonDiff = styled(RemoveButton)`
+  margin-top: 0.2em;
+`;
+
 const AddButton = styled.button`
   width: 28px;
   height: 28px;
@@ -92,26 +96,43 @@ const AddButton = styled.button`
   }
 `;
 
+const TitleBorder = styled.div`
+  position: absolute;
+  width: 70%;
+  padding: 0.3em 0.8em;
+  border: 1px lightgrey solid;
+  border-radius: 5px;
+`;
+
 export default function Properties(props) {
+  function openEthnicitiesPopup() {
+    props.handleOpenPopup();
+    localStorage["addEthnicity"] = JSON.stringify(true);
+  }
+
   return (
     <Container>
       {props.properties.map((element) => {
-        return (
+        return element.isExpandable ? (
+          <Box>
+            <TitleBorder>{element.title}</TitleBorder>
+            <RemoveButtonDiff
+              onClick={() => props.handleDeleteProperty(element.id)}
+            />
+
+            <div>
+              {element.ethnicities.map((element) => {
+                return <p>{element.title}</p>;
+              })}
+            </div>
+            <AddButton onClick={openEthnicitiesPopup}>+</AddButton>
+          </Box>
+        ) : (
           <Box>
             {element.title}
             <RemoveButton
               onClick={() => props.handleDeleteProperty(element.id)}
             />
-            {element.isExpandable ? (
-              <>
-                <div>
-                  {element.ethnicities.map(() => {
-                    return <h1>{element.value}</h1>;
-                  })}
-                </div>
-                <AddButton>+</AddButton>
-              </>
-            ) : null}
           </Box>
         );
       })}
