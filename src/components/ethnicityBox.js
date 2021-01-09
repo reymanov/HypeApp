@@ -39,6 +39,7 @@ const RemoveButton = styled.button`
   border: none;
   font-size: 1.5em;
   font-weight: bold;
+  margin-top: ${(props) => (props.mainEthnicity ? ".2em" : null)};
   margin-right: 0.4em;
   color: #fff;
   background: linear-gradient(180deg, #f76b90 0%, #f6668a 100%);
@@ -62,10 +63,6 @@ const RemoveButton = styled.button`
     cursor: pointer;
     box-shadow: 0px 0px 10px 0px #f6668a;
   }
-`;
-
-const RemoveButtonDiff = styled(RemoveButton)`
-  margin-top: 0.2em;
 `;
 
 const AddButton = styled.button`
@@ -128,13 +125,19 @@ export default function EthnicityBox({
   return (
     <Box>
       <TitleBorder>{element.title}</TitleBorder>
-      <RemoveButtonDiff onClick={() => handleDeleteProperty(element.id)} />
+      <RemoveButton
+        mainEthnicity
+        onClick={() => handleDeleteProperty(element.id)}
+      />
       <EthProps>
         {element.ethnicities.map((element) => {
           return (
             <EthLine>
               <EthBorder>{element.title}</EthBorder>
-              <RemoveButton ethnicity></RemoveButton>
+              <RemoveButton
+                ethnicity
+                onClick={() => handleDeleteProperty(element.id)}
+              ></RemoveButton>
             </EthLine>
           );
         })}

@@ -80,11 +80,30 @@ export default function Task() {
   }
 
   function handleDeleteProperty(id) {
-    setProperties(
-      properties.filter((element) => {
-        return element.id !== id;
-      })
-    );
+    if (id[0] === "e") {
+      setProperties(
+        properties.map((element) => {
+          if (element.title === "Ethnicity") {
+            return {
+              id: element.id,
+              title: element.title,
+              isExpandable: true,
+              ethnicities: element.ethnicities.filter((prop) => {
+                return prop.id !== id;
+              }),
+            };
+          } else {
+            return element;
+          }
+        })
+      );
+    } else {
+      setProperties(
+        properties.filter((element) => {
+          return element.id !== id;
+        })
+      );
+    }
   }
 
   function addNewEthnicity(event, value) {
