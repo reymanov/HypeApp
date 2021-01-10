@@ -103,16 +103,25 @@ export default function Task() {
 
   function addNewProperty(event, value) {
     event.preventDefault();
-    setProperties((properties) => [
-      ...properties,
-      {
-        id: Date.now(),
-        title: value,
-        isExpandable: value === "Ethnicity" ? true : false,
-        ethnicities: value === "Ethnicity" ? [] : null,
-      },
-    ]);
-    handleClosePopup();
+
+    if (
+      value === "Ethnicity" &&
+      properties.filter((el) => el.title === value).length >= 1
+    ) {
+      alert("Ethnicity element already exists");
+      handleClosePopup();
+    } else {
+      setProperties((properties) => [
+        ...properties,
+        {
+          id: Date.now(),
+          title: value,
+          isExpandable: value === "Ethnicity" ? true : false,
+          ethnicities: value === "Ethnicity" ? [] : null,
+        },
+      ]);
+      handleClosePopup();
+    }
   }
 
   function handleDeleteProperty(id) {
@@ -144,6 +153,7 @@ export default function Task() {
 
   function addNewEthnicity(event, value) {
     event.preventDefault();
+
     properties.forEach((element) => {
       if (element.isExpandable) {
         element.ethnicities.push({
