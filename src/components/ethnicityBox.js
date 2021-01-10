@@ -12,6 +12,7 @@ const Box = styled.div`
   font-size: 1.2em;
   font-weight: 900;
   box-shadow: 0px 0px 25px -14px #7165f0;
+  z-index: 1;
 
   &:before {
     content: "";
@@ -27,6 +28,18 @@ const Box = styled.div`
       rgba(119, 116, 247, 1) 100%
     );
     border-radius: 8px 0 0 8px;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -78px;
+    top: 50%;
+    width: 80px;
+    height: 1px;
+    background: lightgrey;
+    z-index: -1;
   }
 `;
 
@@ -112,6 +125,15 @@ const EthLine = styled.div`
   align-items: center;
 `;
 
+const LeftParagraph = styled.p`
+  position: absolute;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: darkgrey;
+  left: -125px;
+  top: 45%;
+`;
+
 export default function EthnicityBox({
   element,
   handleDeleteProperty,
@@ -129,6 +151,7 @@ export default function EthnicityBox({
         mainEthnicity
         onClick={() => handleDeleteProperty(element.id)}
       />
+      <LeftParagraph>And</LeftParagraph>
       <EthProps>
         {element.ethnicities.map((element) => {
           return (
