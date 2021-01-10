@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 
 import EthnicityBox from "./ethnicityBox";
@@ -6,6 +6,7 @@ import EthnicityBox from "./ethnicityBox";
 const Container = styled.div`
   width: 100%;
   min-height: 10px;
+  max-height: 1000px;
   margin: 6em 1em 0 -2em;
   display: flex;
   flex-direction: column;
@@ -96,8 +97,14 @@ const LeftParagraph = styled.p`
 `;
 
 export default function Properties(props) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    props.calcHeight(ref);
+  }, [props, ref]);
+
   return (
-    <Container>
+    <Container ref={ref}>
       {props.properties.map((element) => {
         return element.isExpandable ? (
           <EthnicityBox

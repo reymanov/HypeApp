@@ -1,4 +1,4 @@
-import React, { useState, ReactDOM } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import PopupContainer from "./popup";
@@ -42,19 +42,27 @@ const MainAddButton = styled.button`
   height: 70px;
   border: 10px #fff solid;
   border-radius: 50%;
-  background: linear-gradient(
+  background: ${({ toggleButton }) =>
+    !toggleButton
+      ? `linear-gradient(
     180deg,
     rgba(43, 231, 163, 1) 0%,
     rgba(48, 232, 222, 1) 100%
-  );
+  )`
+      : "lightgrey"};
   font-size: 2.4em;
   font-weight: bold;
   color: #fff;
   box-shadow: 0px 0px 15px -5px #5fedbc;
+  box-shadow: ${({ toggleButton }) =>
+    !toggleButton
+      ? "0px 0px 15px -5px #5fedbc"
+      : "0px 0px 15px -5px lightgrey"};
   z-index: 1;
 
   &:hover {
-    cursor: pointer;
+    cursor: ${({ toggleButton }) =>
+      !toggleButton ? "pointer" : "not-allowed"};
   }
 `;
 
@@ -64,7 +72,7 @@ const LeftBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: 100%;
+  min-height: 105%;
 
   &:after {
     content: "";
@@ -82,6 +90,7 @@ const LeftBox = styled.div`
 export default function Task() {
   const [properties, setProperties] = useState([]);
   const [togglePopup, setTogglePopup] = useState(false);
+  const [toggleButton, setToggleButton] = useState(true);
 
   function handleOpenPopup() {
     setTogglePopup(true);
@@ -146,6 +155,14 @@ export default function Task() {
     handleClosePopup();
   }
 
+  function calcHeight(element) {
+    if (element.current.offsetHeight >= 700) {
+      setToggleButton(true);
+    } else {
+      setToggleButton(false);
+    }
+  }
+
   return (
     <>
       {togglePopup === true && (
@@ -158,7 +175,11 @@ export default function Task() {
       <AppContainer>
         <LeftBox>
           <People>People</People>
-          <MainAddButton id="A" onClick={handleOpenPopup}>
+          <MainAddButton
+            toggleButton={toggleButton}
+            disabled={toggleButton}
+            onClick={handleOpenPopup}
+          >
             +
           </MainAddButton>
         </LeftBox>
@@ -166,6 +187,7 @@ export default function Task() {
           properties={properties}
           handleDeleteProperty={handleDeleteProperty}
           handleOpenPopup={handleOpenPopup}
+          calcHeight={calcHeight}
         />
       </AppContainer>
     </>

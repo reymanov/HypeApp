@@ -62,6 +62,7 @@ const RemoveButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: box-shadow 0.2s ease;
+  z-index: 2;
 
   &:before {
     content: "";
@@ -97,6 +98,28 @@ const AddButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  &:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 70%;
+    top: 20px;
+    left: 49px;
+    z-index: -1;
+    background: lightgrey;
+  }
+`;
+
+const AddButtonDisabled = styled(AddButton)`
+  background: lightgrey;
+  box-shadow: 0px 0px 15px -2px lightgrey;
+  outline: none;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 `;
 
 const TitleBorder = styled.div`
@@ -105,6 +128,8 @@ const TitleBorder = styled.div`
   padding: 0.3em 0.8em;
   border: 1px lightgrey solid;
   border-radius: 5px;
+  background: #fff;
+  z-index: 1;
 `;
 
 const EthProps = styled.div`
@@ -112,10 +137,35 @@ const EthProps = styled.div`
 `;
 
 const EthBorder = styled.div`
+  position: relative;
   width: 100%;
   padding: 0.3em 0.8em;
   border: 1px lightgrey solid;
   border-radius: 5px;
+  z-index: 1;
+
+  &:before {
+    content: "Or";
+    display: block;
+    position: absolute;
+    left: -65px;
+    top: 28%;
+    font-size: 0.7em;
+    font-weight: 500;
+    color: darkgrey;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -44px;
+    top: 50%;
+    width: 44px;
+    height: 1px;
+    background: lightgrey;
+    z-index: -1;
+  }
 `;
 
 const EthLine = styled.div`
@@ -165,7 +215,11 @@ export default function EthnicityBox({
           );
         })}
       </EthProps>
-      <AddButton onClick={openEthnicitiesPopup}>+</AddButton>
+      {element.ethnicities.length < 2 ? (
+        <AddButton onClick={openEthnicitiesPopup}>+</AddButton>
+      ) : (
+        <AddButtonDisabled>+</AddButtonDisabled>
+      )}
     </Box>
   );
 }
