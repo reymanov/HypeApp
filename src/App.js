@@ -1,22 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 
 import Task from "./components/task";
-
-const MainContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  color: #4b597b;
-`;
-
-const Title = styled.h1`
-  font-size: 3em;
-`;
+import { MainContainer, Title } from "./styles/AppStyles";
 
 function App() {
   return (
