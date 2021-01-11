@@ -13,6 +13,18 @@ const AppContainer = styled.div`
   letter-spacing: 0.5px;
   box-shadow: 0px 0px 25px -14px #7165f0;
   zoom: 1.1;
+
+  @media (max-width: 768px) {
+    zoom: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    zoom: 0.8;
+  }
+
+  @media (max-width: 500px) {
+    zoom: 0.6;
+  }
 `;
 
 const People = styled.div`

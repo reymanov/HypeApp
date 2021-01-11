@@ -11,7 +11,7 @@ import {
 
 export default function Popup(props) {
   const [value, setValue] = useState("");
-  const ref = useRef();
+  const ref = useRef(null);
 
   function handleSubmit(event) {
     if (localStorage["addEthnicity"]) {

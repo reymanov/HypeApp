@@ -12,7 +12,12 @@ const MainContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3em;
+  font-size: clamp(2em, 4vw, 3em);
 `;
 
-export { MainContainer, Title };
+const Logo = styled.img`
+  width: clamp(4em, 4vw, 5em);
+  margin-bottom: 2em;
+`;
+
+export { MainContainer, Title, Logo };

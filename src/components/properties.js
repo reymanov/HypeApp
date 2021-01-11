@@ -20,12 +20,13 @@ export default function Properties(props) {
       {props.properties.map((element) => {
         return element.isExpandable ? (
           <EthnicityBox
+            key={element.id}
             handleDeleteProperty={(id) => props.handleDeleteProperty(id)}
             handleOpenPopup={() => props.handleOpenPopup()}
             element={element}
           />
         ) : (
-          <Box>
+          <Box key={element.id}>
             <LeftParagraph>And</LeftParagraph>
             {element.title}
             <RemoveButton

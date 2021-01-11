@@ -33,7 +33,7 @@ export default function EthnicityBox({
       <EthProps>
         {element.ethnicities.map((element) => {
           return (
-            <EthLine>
+            <EthLine key={element.id}>
               <EthBorder>{element.title}</EthBorder>
               <RemoveButton
                 ethnicity
