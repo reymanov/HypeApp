@@ -43,10 +43,10 @@ export default function Popup(props) {
           placeholder="Add new property"
         />
         <div>
+          <ConfirmButton type="submit">Add</ConfirmButton>
           <CancelButton onClick={() => props.handleClosePopup()}>
             Cancel
           </CancelButton>
-          <ConfirmButton type="submit">Add</ConfirmButton>
         </div>
       </PopupForm>
     </PopupContainer>

@@ -50,7 +50,7 @@ const CancelButton = styled.button`
 `;
 
 const ConfirmButton = styled.button`
-  padding: 0.5em 1.2em;
+  padding: 0.5em 1.8em;
   margin: 0 1em;
   font-size: 1.2em;
   font-weight: 500;

@@ -13,15 +13,17 @@ const Container = styled.div`
 const Box = styled.div`
   position: relative;
   width: 100%;
-  min-height: 10px;
   padding: 1rem 1.6rem;
   margin-bottom: 1.4em;
   border-radius: 8px;
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 900;
   box-shadow: 0px 0px 25px -14px #7165f0;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &:before {
     content: "";
@@ -58,8 +60,6 @@ const RemoveButton = styled.button`
   height: 22px;
   border-radius: 50%;
   border: none;
-  font-size: 1.5em;
-  font-weight: bold;
   margin-right: 0.4em;
   color: #fff;
   background: linear-gradient(180deg, #f76b90 0%, #f6668a 100%);
@@ -74,7 +74,7 @@ const RemoveButton = styled.button`
     content: "";
     position: absolute;
     width: 10px;
-    height: 3px;
+    height: 2.8px;
     background: #fff;
     border-radius: 1px;
   }
@@ -87,7 +87,7 @@ const RemoveButton = styled.button`
 
 const LeftParagraph = styled.p`
   position: absolute;
-  font-size: 0.8em;
+  font-size: 0.95em;
   font-weight: 500;
   color: darkgrey;
   left: -125px;

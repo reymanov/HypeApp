@@ -50,7 +50,7 @@ const RemoveButton = styled.button`
   border-radius: 50%;
   border: none;
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: 500;
   margin-top: ${(props) => (props.mainEthnicity ? ".2em" : null)};
   margin-right: 0.4em;
   color: #fff;
@@ -67,7 +67,7 @@ const RemoveButton = styled.button`
     content: "";
     position: absolute;
     width: 10px;
-    height: 3px;
+    height: 2.8px;
     background: #fff;
     border-radius: 1px;
   }
@@ -124,9 +124,10 @@ const AddButtonDisabled = styled(AddButton)`
 const TitleBorder = styled.div`
   position: absolute;
   width: 65%;
-  padding: 0.3em 0.8em;
+  padding: 0.6em 0.8em;
   border: 1px lightgrey solid;
   border-radius: 5px;
+  font-size: 1rem;
   background: #fff;
   z-index: 1;
 `;
@@ -138,18 +139,19 @@ const EthProps = styled.div`
 const EthBorder = styled.div`
   position: relative;
   width: 100%;
-  padding: 0.3em 0.8em;
+  padding: 0.6em 0.8em;
   border: 1px lightgrey solid;
   border-radius: 5px;
   z-index: 1;
+  font-size: 1rem;
 
   &:before {
     content: "Or";
     display: block;
     position: absolute;
-    left: -65px;
-    top: 28%;
-    font-size: 0.7em;
+    left: -70px;
+    top: 20%;
+    font-size: 0.9em;
     font-weight: 500;
     color: darkgrey;
   }
